@@ -1,0 +1,49 @@
+{% extends "base/base.html" %}
+{% block title %}Registro Empresa{% endblock %}
+{% block style %}
+  <style>
+
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    .image-upload>input {
+      display: none;
+    }
+
+    .img-form {
+      border-radius: 50em;
+      height: 200px;
+      width: 200px;
+      /*   max-height: 40vh; max-width: 40vh; */
+
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+  </style>
+{%endblock%}
+
+{% block content %}
+
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" >
+    {%include 'helpers/header.html'%}
+    <main class="container-sm px-4 py-4 text-center">
+      <form action="">
+        {%include 'empresas/forms/detalle-Empresas.html'%}
+      </form>
+    </main>
+  </div>
+
+
+  
+{%include 'helpers/footer.html'%}
+{%endblock%}

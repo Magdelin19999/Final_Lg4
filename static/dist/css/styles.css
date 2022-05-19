@@ -1,0 +1,102 @@
+/*
+ * Globals
+ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none;
+  /* Prevent inheritance from `body` */
+}
+
+
+/*
+ * Base structure
+ */
+
+body {
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+
+.cover-container {
+  max-width: 90%;
+}
+
+
+/*
+ * Header
+ */
+
+.nav-masthead .nav-link,
+.inicio .nav-link {
+  padding: .25rem 0;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .5);
+  background-color: transparent;
+  border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus,
+.inicio .nav-link:hover,
+.inicio .nav-link:focus {
+  border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-masthead .nav-link+.nav-link {
+  margin-left: 1rem;
+}
+
+.nav-masthead .nav-link:active, 
+.inicio .nav-link:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input {
+  margin-bottom: 10px;
+
+}
+
+.form-signin input[type="email"] {
+
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
