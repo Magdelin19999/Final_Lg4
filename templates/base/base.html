@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <title>{% block title %}{% endblock %}</title>
     {%include 'helpers/head.html'%}
     {% block style %}{%endblock%}
 </head>
+
 <body class="d-flex h-100 text-center text-white bg-dark">
-    {% block content %}{%endblock%}
     
+    {% block content %}{%endblock%}
+
+    
+    {%include 'helpers/scripts.html'%}
 
 </body>
+
 </html>

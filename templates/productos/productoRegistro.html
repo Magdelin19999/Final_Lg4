@@ -1,5 +1,5 @@
 {% extends "base/baseAdmin.html" %}
-{% block title %}Mis Productos{% endblock %}
+{% block title %}Registro Producto{% endblock %}
 {% block style %}
   <style>
     .bd-placeholder-img {
@@ -22,7 +22,7 @@
 <div
 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-0 border-bottom">
 <h1 class="h2">Plantillas de nuevo </h1>
-<a type="button" class="btn btn-success btn-floating">
+<a type="button" class="btn btn-success btn-floating" href="{{url_for('productoEmpresas')}}">
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
         class="bi bi-node-plus-fill" viewBox="0 0 16 16">
         <path
@@ -32,7 +32,7 @@ class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-cente
 </a>
 </div>
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column justify-content-center">
-<form class=" container-sm px-4 py-4 mx-auto" style="background-color: aqua;">
+<form class=" container-sm px-4 py-4 mx-auto" action="{{url_for('productoRegistro')}}" method="post" enctype="multipart/form-data">
     {%include 'productos/forms/detalleProducto.html'%}
 </form>
 

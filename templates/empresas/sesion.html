@@ -1,35 +1,39 @@
 {% extends "base/base.html" %}
 {% block title %}Inicio sesion{% endblock %}
 {% block style %}
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
     }
+  }
 </style>
 {%endblock%}
 
 {% block content %}
 
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" >
-    {%include 'helpers/header.html'%}
-    <main class="form-signin">
-      <form action="">
-        {%include 'empresas/forms/email-pass.html'%}
-      </form>
-    </main>
-  </div>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  {%include 'helpers/header.html'%}
+  <main class="form-signin">
+    <form action="">
+      {%include 'empresas/forms/email-pass.html'%}
+      <hr>
+      <small class="text-muted">No tienes cuenta aun <a href="{{ url_for('empresaRegistro') }}">Registrate!!</a>,</small>
+      <small class="text-muted">Cambiar <a href="{{ url_for('empresaCambioPass') }}">Contraseña!!</a></small>
+    </form>
+  </main>
+  {%include 'helpers/footer.html'%}
+
+</div>
 
 
-  
-{%include 'helpers/footer.html'%}
+
 {%endblock%}

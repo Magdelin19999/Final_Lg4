@@ -11,17 +11,8 @@
       user-select: none;
     }
 
-    .image-upload>input {
-      display: none;
-    }
 
-    .img-form {
-      border-radius: 50em;
-      height: 200px;
-      width: 200px;
-      /*   max-height: 40vh; max-width: 40vh; */
 
-    }
 
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
@@ -37,13 +28,17 @@
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" >
     {%include 'helpers/header.html'%}
     <main class="container-sm px-4 py-4 text-center">
-      <form action="">
+      {%include 'helpers/flash.html'%}
+
+      <form action="{{url_for('empresaRegistro')}}" method="post" enctype="multipart/form-data">
         {%include 'empresas/forms/detalle-Empresas.html'%}
       </form>
+
     </main>
+{%include 'helpers/footer.html'%}
+    
   </div>
 
 
   
-{%include 'helpers/footer.html'%}
 {%endblock%}

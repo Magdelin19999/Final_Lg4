@@ -1,5 +1,5 @@
-<div class="p-2 p-md-4 border-0" style="background-color: bisque;">
-    <div class="row align-items-center g-lg-3 py-3" style="background-color:aquamarine;">
+<div class="p-2 p-md-4 border-0" >
+    <div class="row align-items-center g-lg-3 py-3" >
         <div class="col-lg-6 text-center text-lg-center">
             <div class="image-upload">
                 <label for="imgProducto">
@@ -11,16 +11,25 @@
         </div>
         <div class="col-md-10 mx-auto col-lg-6">
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput" class="text-secondary">Nombre Producto</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Producto">
+                <label for="nombre" class="text-secondary">Nombre Producto</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput" class="text-secondary">Descripcion</label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion del Producto">
+                <label for="descripcion" class="text-secondary">Descripcion</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput" class="text-secondary">Valor</label>
+                <input type="number" class="form-control" id="precio" name="precio" placeholder="Precio del producto">
+                <label for="precio" class="text-secondary">Precio</label>
+            </div>
+            <div class=" mb-3">
+                <select id="estado" name="estado" class="form-select form-select-lg" aria-label="Default select example">
+                    <option selected>Estado Producto</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                  </select>
+               <!--  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput" class="text-secondary">Estado</label> -->
             </div>
            
            

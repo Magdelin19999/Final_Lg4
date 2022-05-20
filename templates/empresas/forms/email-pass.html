@@ -1,7 +1,8 @@
 
 <div>
     <img class="mb-0" src="{{url_for('static',filename='brand/imagenReg.svg')}}" alt="" width="150" height="150">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+      
+      <h1 class="h3 mb-3 fw-normal">{{ titulo }}</h1>
    
     <div class="form-floating">
       <input type="email" class="form-control" id="input-email" placeholder="name@example.com">
@@ -13,5 +14,4 @@
     </div>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
 </div>
