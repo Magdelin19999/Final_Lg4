@@ -36,6 +36,7 @@ def pathToImagen(productos):
     #print(empresas)     
     
     for producto in empresas:
+        print(producto)
         for detalle in producto['productos']:
             print(detalle)
             
@@ -61,7 +62,7 @@ def nombresEmpresas(productos):
                 filename= filename.replace(":", "_")
                 filename= filename.replace("-", "_")
         
-                imagen = binary.converImagen(imagenBi=empresa['logoEmpresa'],nombre=filename,dir='user')
+                imagen = binary.converImagen(imagenBi=empresa['logoEmpresa'],nombre=filename,dir='temp')
                 
                 empresas.append({
                     'nombreEmpresa' : empresa['nombreEmpresa'],

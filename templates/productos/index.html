@@ -21,21 +21,16 @@
 
 {% block content %}
 
-
-<div class=" mx-auto p-3">
-
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   {%include 'helpers/header.html'%}
-
-  <main class="container-fluid">
+  <main class="container-sm px-4 py-4 text-center">
     {%include 'helpers/flash.html'%}
-    <!--detalles -->
-    <section class="py-5 text-center container pb-0 mb-0" >
+
+    <section class="py-5 text-center container pb-0 mb-0 w-100">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto pb-0 mb-0">
           <h1 class="fw-light">Detalle</h1>
-          <p class="lead text-muted">Something short and leading about the collection below—its
-            contents, the creator, etc. Make it short and sweet, but not too short so folks don’t
-            simply skip over it entirely.</p>
+          <p class="lead text-muted">buscador pues</p>
           <p>
             <a href="#" class="btn btn-primary my-2">Main call to action</a>
             <a href="#" class="btn btn-secondary my-2">Secondary action</a>
@@ -43,62 +38,56 @@
         </div>
       </div>
     </section>
- 
-    <div class="container px-4 py-5 pb-0 mb-0 pt-0 mt-0" id="custom-cards">
+    <section>
       <div id="cards_landscape_wrap-2">
         <div class="container">
-          <div class="row row-cols-1 row-cols-lg-3 justify-content-center align-items-stretch g-4 py-5">
+          <div class="row justify-content-center">
             {% for empresa in empresas %}
-              {% for detalle in empresa.productos %}
-              <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                <a href="">
-                  <div class="card-flyer bg-dark">
-                    <div class="text-box">
-                      <div class="image-box">
-                        <img src="{{detalle.imagen}}" alt="" />
-                      </div>
-                      <div class="text-container">
-                        <h6>{{detalle.nombre}}</h6>
-                        <ul class="d-flex list-unstyled mt-auto">
-                          <li class="me-auto">
-                            <img src="{{detalle.logoEmpresa}}" alt="" width="32" height="32" class="rounded-circle border border-white">
-                          </li>
-                          <li class="d-flex align-items-center me-3">
-                            <small>{{empresa.nombreEmpresa}}</small>
-                          </li>
-                          <li class="d-flex align-items-center me-3">
-                            <small>{{empresa.direccionEmpresa}}</small>
-                          </li>
-            
-                          <li class="d-flex align-items-center ">
-                            <small>{{detalle.precio}}</small>
-                          </li>
-                        </ul>
-                      </div>
+            {% for detalle in empresa.productos %}
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <a href="">
+                <div class="card-flyer bg-dark">
+                  <div class="text-box">
+                    <div class="image-box">
+                      <img src="{{detalle.imagen}}" alt="" />
+                    </div>
+                    <div class="text-container">
+                      <h6>{{detalle.nombre}}</h6>
+                      <ul class="d-flex list-unstyled mt-auto">
+                        <li class="me-auto">
+                          <img src="{{empresa.logoEmpresa}}" alt="" width="32" height="32"
+                            class="rounded-circle border border-white">
+                        </li>
+                        <li class="d-flex align-items-center me-3">
+                          <small>{{empresa.nombreEmpresa}}</small>
+                        </li>
+                        <li class="d-flex align-items-center me-3">
+                          <small>{{empresa.direccionEmpresa}}</small>
+                        </li>
+
+                        <li class="d-flex align-items-center ">
+                          <small>{{detalle.precio}}</small>
+                        </li>
+                      </ul>
                     </div>
                   </div>
-                </a>
-              </div>
-              {% endfor %}
+                </div>
+              </a>
+            </div>
             {% endfor %}
-           
+            {% endfor %}
+
           </div>
         </div>
       </div>
-      <div class="row row-cols-1 row-cols-lg-3  justify-content-center align-items-stretch g-4 py-5">
-        
 
-
-
-
-
-      </div>
-
-    </div>
+    </section>
 
   </main>
   {%include 'helpers/footer.html'%}
 
 </div>
+
+
 
 {%endblock%}
