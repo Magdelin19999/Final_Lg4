@@ -14,7 +14,7 @@ def prodoID():
     print('javascript')
     return jsonify({
         'nombre':'Magdelin pai',
-        'picos': 'largos'
+        'estudiante': 'itp'
     })
 @app.get("/")
 def home():
