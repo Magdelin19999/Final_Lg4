@@ -3,10 +3,13 @@ from datetime import datetime
 from datetime import date
 
 def imagenPath(imagen,dir):
+    crearCarppetas(f'static/img/{dir}')
+    
     nombre_imagen = (imagen.filename).replace(" ", "")
     path = f'static/img/{dir}/{nombre_imagen}'
     #print('\n\n\n\n\n',path)
     imagen.save(path)
+    
     return path
 
 def TimeNow():
@@ -22,4 +25,9 @@ def eliminarTemp():
      print('Eliminando ando')
      for f in files: 
         os.remove(f)
-
+        
+def crearCarppetas(directorio):
+    try:
+        os.stat(directorio)
+    except:
+        os.mkdir(directorio)

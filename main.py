@@ -7,7 +7,6 @@ app = Flask (__name__)
 app.secret_key = "magdelinpai"
 
 ''' cambiar hasta que ya este lo de validacion de login '''
-id_usuario = 42
 id_categoria=1
 
 @app.get('/hola')

@@ -3,6 +3,8 @@ from PIL import Image
 import io 
 import os
 
+from controllers.imagenes.path import crearCarppetas
+
 ''' '''
 def converBlod(imagen):
     print('\n\n\n\n\n\n\n\t',imagen)
@@ -20,6 +22,8 @@ def converImagen(imagenBi, nombre,dir):
     # Display the image
     #imagenBi.show()
     nombre= nombre.replace(" ", "")
+    crearCarppetas(f'static/img/{dir}/')
+    
     path = f'static/img/{dir}/{nombre}.{imagenBi.format}'
     #print(path)
     imagenBi.save(path)

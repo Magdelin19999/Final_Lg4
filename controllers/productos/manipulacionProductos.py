@@ -5,7 +5,7 @@ from models.productos import sentenciasSQLProductos as SQL
 
 from controllers.imagenes import path,binary
 
-id_usuario = 42
+
 id_categoria=1
 
 def datosFormulario(form,imgProducto):
@@ -15,7 +15,7 @@ def datosFormulario(form,imgProducto):
     imgProducto= path.imagenPath(imgProducto,'temp')
     fecha = path.TimeNow()
     SQL.registroProducto(
-            id_usuario, id_categoria, nombre, descripcion, 
+             id_categoria, nombre, descripcion, 
             precio,     estado,     imgProducto, fecha)
     
     #resultado = SQL.insertUsuario()
