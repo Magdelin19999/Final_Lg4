@@ -1,0 +1,45 @@
+<button class="btn btn-primary float-md-end" type="button" data-bs-toggle="offcanvas"
+data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Administracion</button>
+
+<div class="offcanvas offcanvas-end text-white bg-dark " tabindex="-1" id="offcanvasRight"
+aria-labelledby="offcanvasRightLabel">
+
+<div class="offcanvas-body">
+  <div class="container">
+    <img src="/static/brand/bootstrap-logo.svg" class="bd-placeholder-img rounded-circle" width="140" height="140">
+
+    <h2>Nombre Empresa</h2>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        Administracion
+      </button>
+      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+        <li><a class="dropdown-item " href="{{url_for('productoRegistro')}}">
+            <span class="d-inline-block bg-success rounded-circle " style="width: .5em; height: .5em;"></span>
+            Registrar Producto
+          </a>
+        </li>
+
+        <li><a class="dropdown-item" href="{{url_for('productoEmpresas')}}">
+            <span class="d-inline-block bg-light rounded-circle "
+              style="width: .5em; height: .5em;"></span> Mis Producto</a>
+        </li> 
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="{{url_for('productoEmpresas')}}">
+            <span class="d-inline-block bg-success rounded-circle "
+              style="width: .5em; height: .5em;"></span> Dashboard &raquo;
+          </a>
+        </li>
+        <li><a class="dropdown-item" href="{{url_for('empresaFinSesion')}}">
+          <span class="d-inline-block bg-light rounded-circle "
+            style="width: .5em; height: .5em;"></span> Cerrar Sesion &raquo;</a>
+      </li>
+      </ul>
+    </div>
+    </p>
+  </div>
+</div>
+</div>

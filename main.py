@@ -1,5 +1,5 @@
 from flask import *
-from controllers.empresas import manipulacionUsuarios as USUARIOS
+from controllers.empresas import regEmpresaVali, manipulacionUsuarios as USUARIOS
 from controllers.productos import manipulacionProductos as PRODUCTOS, cartaManipulacion as carta
 
 
@@ -10,9 +10,17 @@ app.secret_key = "magdelinpai"
 id_usuario = 42
 id_categoria=1
 
+@app.get('/hola')
+def prodoID():
+    print('javascript')
+    return jsonify({
+        'nombre':'Magdelin pai',
+        'picos': 'largos'
+    })
 @app.get("/")
 def home():
     productos = carta.getAllProducts()
+    print('\tTotal productos', len(productos))
     return render_template("productos/index.html",empresas=productos)
 
 
@@ -23,6 +31,12 @@ def empresaRegistro():
         logoEmpresa = request.files['logoEmpresa']
         flash('Usuario registrado.... Revisa tu correo Para completar el registro')
         print(request.form,logoEmpresa)
+        
+        ''' resultado = regEmpresaVali.validacionForm(request.form, logoEmpresa)
+        if (resultado[0]==False):
+            #flash("".join(resultado[1]))
+            flash("".join(resultado[1]),'warning ')
+            return redirect(url_for("registroEmpresa")) '''
         
         USUARIOS.datosFormulario(request.form, logoEmpresa)
     return render_template("empresas/registro.html")
@@ -56,11 +70,23 @@ def empresaEditar():
 @app.get("/empresa-logout")
 def empresaFinSesion():
     print('\n\n\tFinal sesion')
+    USUARIOS.cerrarSesion()
+    
     return redirect(url_for("home"))
 
-@app.get("/empresa-sesion")
+@app.route("/empresa-sesion", methods=['GET', 'POST'])
 def empresaSesion():
-    titulo='Please sign in'
+    if request.method == 'POST':
+        print('inicio de sesion')
+        #print(request.form)
+        resultadoInicio = USUARIOS.inicioSesion(request.form)
+        flash(resultadoInicio['mensaje'])
+    
+        if(resultadoInicio['estado']):
+            print('Ya se inicio de sesion activa')
+            return render_template("productos/productoEmpresas.html")
+            
+    titulo='Inicio de Sesion'
     return render_template("empresas/sesion.html",titulo=titulo)
 
 @app.get("/empresa-cambio-pass")

@@ -36,7 +36,9 @@ def activacion(id):
 def eliminarNoActivo(id):
     SQL.eliminarID(id)
 # sesion usuario
-def inicioSesion(correo, contrasenia):
+def inicioSesion(form):
+    print(form)
+    correo, contrasenia = form.values()
     return (SQL.obtenerEmpresa(correo, encriptarContraseña(contrasenia)))
 
 def cerrarSesion():

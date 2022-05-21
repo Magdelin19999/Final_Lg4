@@ -1,3 +1,4 @@
+import glob, os
 from datetime import datetime
 from datetime import date
 
@@ -15,3 +16,10 @@ def TimeNow():
     #print('\n\n\n\t2022-05-20 07:45:20\n\t',nombreTime)
     
     return nombreTime
+
+def eliminarTemp():
+     files = glob.glob('static/img/temp/*') 
+     print('Eliminando ando')
+     for f in files: 
+        os.remove(f)
+

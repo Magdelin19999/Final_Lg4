@@ -8,10 +8,13 @@ def getAllProducts():
         return pathToImagen(productos)
         
 def pathToImagen(productos):
-    print(type(productos))
-    producPath = [{'empresa':'','productos':[]}]
+    ## eliminar archivos carpeta Temp
+    path.eliminarTemp()
+
     empresas= nombresEmpresas(productos)
+  
     for producto in productos:
+        #print(producto['nombre'])
         filename = f'{path.TimeNow()}-{producto["nombre"]}'
         filename= filename.replace(" ", "_")
         filename= filename.replace(":", "_")
@@ -19,7 +22,8 @@ def pathToImagen(productos):
         imagen = binary.converImagen(imagenBi=producto['imagen'],nombre=filename,dir='temp')
         producto['imagen']=imagen
         
-    # agrupar por empresas 
+    print('\n\n------')
+
     for emp in empresas:
         for producto in productos:
             aux = {
@@ -32,43 +36,54 @@ def pathToImagen(productos):
                 'fecha' : producto['fecha'],
             }
             if(emp['nombreEmpresa']==producto['nombreEmpresa']):
+                print('recorriendo:',producto['producto_id'],' ', producto['nombre'])
+                isRegistrado(emp['productos'],producto['producto_id'])
                 emp['productos'].append(aux)
-    #print(empresas)     
-    
-    for producto in empresas:
-        print(producto)
-        for detalle in producto['productos']:
-            print(detalle)
-            
+                
+                
+    print('\n\n------')
+             
     return empresas
 
-
- 
-
+def isRegistrado(productos,nuevo):
+    resul = False
+    for prod in productos:
+        if(prod['producto_id']==nuevo):
+            print('Ya se registro')
+            resul = True
+    return resul
+            
+            
 def nombresEmpresas(productos):
     nombres =[]
-    empresas = []
-    
+    empresas=[]
     for item in productos:
         nombres.append(item['nombreEmpresa'])
     for nm in nombres:
         if(nombres.count(nm)>1):
             nombres.remove(nm)
+            
     for nm in nombres:
         for empresa in productos:
-            if(nm==empresa['nombreEmpresa']):
-                filename = f'{path.TimeNow()}-{empresa["nombreEmpresa"]}'
-                filename= filename.replace(" ", "_")
-                filename= filename.replace(":", "_")
-                filename= filename.replace("-", "_")
-        
-                imagen = binary.converImagen(imagenBi=empresa['logoEmpresa'],nombre=filename,dir='temp')
-                
-                empresas.append({
+            filename = f'{path.TimeNow()}-{empresa["nombreEmpresa"]}'
+            filename= filename.replace(" ", "_")
+            filename= filename.replace(":", "_")
+            filename= filename.replace("-", "_")
+            imagen = binary.converImagen(imagenBi=empresa['logoEmpresa'],nombre=filename,dir='temp')
+            aux={
                     'nombreEmpresa' : empresa['nombreEmpresa'],
                     'direccionEmpresa' : empresa['direccionEmpresa'],
                     'logoEmpresa' : imagen,
                     'productos':[]
-                })
+                }
+            if(len(empresas)>0):
+                for emp in empresas:
+                    if(emp['nombreEmpresa']!=empresa['nombreEmpresa']):
+                        empresas.append(aux)
+                        
+            else:
+                empresas.append(aux)                    
+    #print(empresas)
+
     return empresas
 

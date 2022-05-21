@@ -1,6 +1,7 @@
 import re
 
-def validacionForm (nombreEmpresa,descEmpresa,celularEmpresa,direccionEmpresa,correo,contrasenia):
+def validacionForm (form, imagen):
+    nombreEmpresa, descEmpresa, celularEmpresa, direccionEmpresa, correo, contrasenia = form.values()
     is_valid = True
     resultado= []
     mensaje =[]

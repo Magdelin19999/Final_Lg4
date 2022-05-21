@@ -64,7 +64,7 @@ def obtenerEmpresa(correo, contrasenia):
     cursor = DB.cursor(dictionary=True)
     cursor.execute(
         f"""SELECT * FROM usuarios   
-                   WHERE correo = '{correo}' AND contrasenia = '{contrasenia}';"""
+                   WHERE correo = '{correo}' AND contrasenia = '{contrasenia}' ;"""
     )
     empresa = cursor.fetchone()
     cursor.close()
@@ -78,7 +78,7 @@ def nuevaSesion(id_empresa, nombreEmpresa,logoEmpresa):
     session["loggedin"] = True
     session["id"] = id_empresa
     session["usuario"] = nombreEmpresa
-    session["logoEmpresa"] = binary.converImagen(logoEmpresa,nombreEmpresa)
+    session["logoEmpresa"] = binary.converImagen(logoEmpresa,nombreEmpresa,'user')
         
 def cerrarSesion():
     session.pop("loggedin", None)

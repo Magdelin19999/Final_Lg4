@@ -23,10 +23,10 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   {%include 'helpers/header.html'%}
   <main class="form-signin">
-    <form action="">
+    <form action="{{url_for('empresaSesion')}}" method="post" enctype="multipart/form-data">
       {%include 'empresas/forms/email-pass.html'%}
       <hr>
-      <small class="text-muted">No tienes cuenta aun <a href="{{ url_for('empresaRegistro') }}">Registrate!!</a>,</small>
+      <small class="text-muted">No tienes cuenta aun <a href="{{ url_for('empresaSesion') }}">Registrate!!</a>,</small>
       <small class="text-muted">Cambiar <a href="{{ url_for('empresaCambioPass') }}">Contraseña!!</a></small>
     </form>
   </main>
