@@ -1,4 +1,5 @@
-//env
+.vscode
+env
 .env
-//__pycache__
-//img
+__pycache__
+img
