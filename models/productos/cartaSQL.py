@@ -33,5 +33,18 @@ def productosAll():
     cursor.execute(SQL)
     productos = cursor.fetchall()
     cursor.close()
-    print(len(productos))
+    
     return productos; 
+  
+def productoID(id):
+    producto = []
+    SQL = f'{selectActivos} WHERE prod.`estado`=1 AND prod.`id`={id}'
+    cursor = DB.cursor(dictionary=True)
+    #print(SQL)
+    cursor.execute(SQL)
+    producto = cursor.fetchone()
+    cursor.close()
+    
+    return producto; 
+    
+    print(id)

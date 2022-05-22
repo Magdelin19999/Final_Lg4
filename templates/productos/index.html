@@ -38,19 +38,34 @@
         </div>
       </div>
     </section>
+
     <!--Modal detalle producto-->
 
-    <div class="modal fade" id="detalleProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal fade" id="detalleProducto" tabindex="-1" role="dialog" aria-labelledby="tituloModal">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content bg-dark">
           <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">Modal titleeee</h4>
+            <h4 class="modal-title text-uppercase" id="tituloModal">Error </h4>
             <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <img width="100%" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/172203/16.jpg" alt="" />
+          <div class="modal-body ">
+            <div class="container">
+             <div class="row ">
+                <div class="col-sm-4  ">
+                  <p class="desc"></p>
+                  <p class="cate"></p>
+                  <p class="precio"></p>
+
+                </div>
+                <img src="..." class="imProd col-sm-8" alt="...">
+                
+              </div>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, animi!</p>
+
           </div>
-          <div class="modal-footer">
+
+          <div class="modal-footer text-end">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary">Save changes</button>
           </div>
@@ -59,27 +74,26 @@
     </div>
 
 
-    
+
     <section>
       <div id="cards_landscape_wrap-2">
         <div class="container">
-          <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 g-4 justify-content-center">
+          <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
 
-    
+
             <!--custom card produc 1 -->
-            
+
             {% for empresa in empresas %}
             {% for detalle in empresa.productos %}
             <div class="col">
               <div class="card bg-dark hover-div" width="50%">
-                <img src="{{detalle.imagen}}" class="card-img-top"
-                  alt="hollywood sign" width="90%"/>
+                <img src="{{detalle.imagen}}" class="card-img-top" alt="hollywood sign" width="90%" />
                 <div class="card-body">
                   <h5 class="card-title">{{detalle.nombre}}</h5>
-              <!--     <p class="card-text">
+                  <!--     <p class="card-text">
                     {{detalle.descripcion}}
                   </p> -->
-                  
+
                   <ul class="d-flex list-unstyled mt-auto">
                     <li class="me-auto">
                       <img src="{{empresa.logoEmpresa}}" alt="" width="32" height="32"
@@ -98,7 +112,8 @@
                   </ul>
                 </div>
                 <div class="card-footer">
-                  <button  class=" btn  stretched-link border-0 rounded-circle bg-danger" onclick="hola('jeison')" data-bs-toggle="modal" >
+                  <button class=" btn  stretched-link border-0 rounded-circle bg-danger"
+                    onclick="hola({{detalle.producto_id}})" data-bs-toggle="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
                       class="bi bi-plus-circle-fill " viewBox="0 0 16 16">
                       <path
@@ -110,9 +125,9 @@
             </div>
             {% endfor %}
             {% endfor %}
-    
+
           </div>
-          
+
         </div>
       </div>
 
@@ -125,18 +140,43 @@
 
 
 <script>
-  async function hola() {
+  async function hola(id) {
     console.log('click')
-    fetch('/hola')
-                .then(res => res.json())
-                .then((response)  => {
-                  console.log(response)
-                })
-                .catch(err => console.error(err))
-    
-    $("#detalleProducto").modal("show");
+    const modalInfo = document.querySelector('#detalleProducto');
+    const modalContent = modalInfo.querySelector('.modal-dialog .modal-content');
 
+    const tituloModal = modalContent.querySelector('.modal-title');
+    const img = modalContent.querySelector('.modal-body .imProd ');
+    const desc= modalContent.querySelector('.modal-body .desc ')
+    const cate = modalContent.querySelector('.modal-body .cate ')
+    const precio = modalContent.querySelector('.modal-body .precio ')
     
+    fetch(`/detalle-producto?id=${id}`)
+      .then(res => res.json())
+      .then((response) => {
+        if (response['respuesta']) {
+          data = response['response'];
+          console.log(data);
+
+          $(tituloModal).text(data['nombre'])
+          $(img).attr('src', data['imagen'])
+          $(desc).text(data['descripcion'])
+          $(cate).text(data['categoria'])
+          $(precio).text(formatterPeso.format(data['precio']))
+
+        }
+        console.log(response);
+      })
+      .catch(err => console.error(err))
+
+    $(modalInfo).modal("show");
+
+
   }
+  const formatterPeso = new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    minimumFractionDigits: 0
+  })
 </script>
 {%endblock%}

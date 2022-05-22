@@ -9,13 +9,7 @@ app.secret_key = "magdelinpai"
 ''' cambiar hasta que ya este lo de validacion de login '''
 id_categoria=1
 
-@app.get('/hola')
-def prodoID():
-    print('javascript')
-    return jsonify({
-        'nombre':'Magdelin pai',
-        'estudiante': 'itp'
-    })
+
 @app.get("/")
 def home():
     productos = carta.getAllProducts()
@@ -92,6 +86,7 @@ def empresaSesion():
 def empresaCambioPass():
     titulo='Cambio de Contraseña'
     return render_template("empresas/sesion.html",titulo=titulo)
+
 #metodos producto
 
 @app.get("/productos-empresa")
@@ -111,6 +106,18 @@ def productoRegistro():
 def productoEditar():
     return render_template("productos/productoEditar.html")
 
+@app.route("/detalle-producto")
+def productoDetalle():
+    print('llego')
+    print('detalle producto fetch',request.args['id'])
+    id = request.args['id']
+    
+    result = carta.obtenerId(id)
+    print(type(result['response']))
+    if(result['res']):
+        print(result)
+        return jsonify({'respuesta':result['res'],'response':result['response']})
+    return jsonify({'res':result['res']})
 
 @app.get("/productos-eliminar")
 def productoEliminar():
