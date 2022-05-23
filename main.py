@@ -1,4 +1,6 @@
 from flask import *
+from config.testDB import testConnect
+
 from controllers.empresas import regEmpresaVali, manipulacionUsuarios as USUARIOS
 from controllers.productos import manipulacionProductos as PRODUCTOS, cartaManipulacion as carta
 
@@ -12,8 +14,16 @@ id_categoria=1
 
 @app.get("/")
 def home():
+    productos = []
+    
     productos = carta.getAllProducts()
-    print('\tTotal productos', len(productos))
+    
+    ''' 
+    if(testConnect()):
+        productos = carta.getAllProducts()
+        print('\tTotal productos', len(productos))
+    else:
+        flash('Error de coneccion con la base de datos') '''
     return render_template("productos/index.html",empresas=productos)
 
 
@@ -106,16 +116,19 @@ def productoRegistro():
 def productoEditar():
     return render_template("productos/productoEditar.html")
 
-@app.route("/detalle-producto")
+@app.route("/detalle-producto", methods=['GET', 'POST'])
 def productoDetalle():
-    print('llego')
-    print('detalle producto fetch',request.args['id'])
+    if request.method == 'POST':
+        jsonData = request.get_json()#{'producto_id': 6, 'pedido': '1'}
+        print(jsonData)
+        return jsonify({'respuesta':'Procesando'})
+    
     id = request.args['id']
     
     result = carta.obtenerId(id)
-    print(type(result['response']))
+    #print(type(result['response']))
     if(result['res']):
-        print(result)
+        #print(result)
         return jsonify({'respuesta':result['res'],'response':result['response']})
     return jsonify({'res':result['res']})
 

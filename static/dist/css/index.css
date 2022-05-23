@@ -10,7 +10,7 @@
 
 }
 .hover-div {
-  padding: 20px 20px;
+  padding: 10px 10px;
   text-align: center;
 }
 
@@ -31,3 +31,54 @@
   cursor: pointer;
   border-radius: 5px;
 }
+
+/* ____________________ modal producto
+ */
+ .btnAction {
+  width: 55px;
+  height: 55px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.btUp {
+  background: url(../../brand/bxs-message-square-add.svg);
+  background-size: cover;
+  font: 0/0 a;
+  text-shadow: transparent;
+  color: transparent;
+  text-decoration: none;
+}
+
+.btDown {
+  background: url(../../brand/bxs-message-square-minus.svg);
+  background-size: cover;
+  font: 0/0 a;
+  text-shadow: transparent;
+  color: transparent;
+  text-decoration: none;
+}
+
+.store {
+  background: url(../../brand/bx-cart-add.svg);
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border: 0;
+
+}
+
+input[name='pedido'] {
+  border: 0;
+  padding: 7px 0;
+  border-bottom: 2px solid rgba(17, 2, 2, 0.858);
+  background: inherit;
+  background-color: transparent;
+  color: white;
+}
+input[name='pedido']:hover {
+  
+  box-shadow: 0 4px 16px rgb(193, 223, 235);
+  transition: all 0.2s ease;
+  }

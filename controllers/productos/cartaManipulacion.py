@@ -1,8 +1,9 @@
 from flask import jsonify
 from models.productos import cartaSQL
-
+import locale
 from controllers.imagenes import binary,path
 
+locale.setlocale(locale.LC_MONETARY, "es-CO.UTF-8")
 def getAllProducts():
     productos = cartaSQL.productosAll()
     #validar si existe carpeta img
@@ -12,11 +13,12 @@ def getAllProducts():
     return [] 
 
 def obtenerId(id):
-    print(id)
+    #print(id)
     producto = cartaSQL.productoID(id)
     if(producto):
         producto['logoEmpresa']=retunPathImg(nombre=producto["nombreEmpresa"],binario=producto['logoEmpresa'],dir='temp')
         producto['imagen']=retunPathImg(nombre=producto["nombre"],binario=producto['imagen'],dir='temp')
+        producto['precio'] = locale.currency( producto['precio'], grouping=True )
         
 
         return{
@@ -36,13 +38,18 @@ def pathToImagen(productos):
     for emp in empresas:
         for producto in productos:
             imgagen_prod = retunPathImg(nombre=producto["nombre"],binario=producto['imagen'],dir='temp')
+           
+
+
+            #print(locale.currency( producto['precio'], grouping=True ))
+            
             aux = {
                 'producto_id' : producto['producto_id'],
                 'imagen' : imgagen_prod,
                 'nombre' : producto['nombre'],
                 'descripcion' : producto['descripcion'],
                 'categoria' : producto['categoria'],
-                'precio' : producto['precio'],
+                'precio' : locale.currency( producto['precio'], grouping=True ),
                 'fecha' : producto['fecha'],
             }
             if(emp['nombreEmpresa']==producto['nombreEmpresa']):
@@ -56,7 +63,7 @@ def isRegistrado(datos,nuevo,campo):
     resul = False
     for dt in datos:
         if(dt[campo]==nuevo):
-            print('Ya se registro')
+            #print('Ya se registro')
             resul = True
     return resul
 
@@ -94,9 +101,9 @@ def nombresEmpresas(productos):
                         'productos':[]
                     } 
                 result.append(aux)
-    print('\n\n------')
-    print(result)
-    print('\n\n------')
+    #print('\n\n------')
+    #print(result)
+    #print('\n\n------')
    
 
     return result

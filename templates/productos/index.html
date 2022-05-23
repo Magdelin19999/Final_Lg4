@@ -15,6 +15,15 @@
       font-size: 3.5rem;
     }
   }
+
+  .btDown {
+
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-180deg);
+
+  }
 </style>
 <link rel="stylesheet" href="{{ url_for('static', filename='./dist/css/index.css' ) }}">
 {%endblock%}
@@ -42,32 +51,71 @@
     <!--Modal detalle producto-->
 
     <div class="modal fade" id="detalleProducto" tabindex="-1" role="dialog" aria-labelledby="tituloModal">
-      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+      <div class="modal-dialog modal-lg modal-dialog-centered " role="document">
         <div class="modal-content bg-dark">
           <div class="modal-header">
             <h4 class="modal-title text-uppercase" id="tituloModal">Error </h4>
             <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body ">
-            <div class="container">
-             <div class="row ">
-                <div class="col-sm-4  ">
-                  <p class="desc"></p>
-                  <p class="cate"></p>
-                  <p class="precio"></p>
+            <div class="row">
+              <div class="col-md-5 text-start">
+                <dl>
+                  <h5>Categoria: <span>
+                      </p><b>
+                        <p class="cate">
+                      </b>
+                    </span></h4>
+                    <dt>
+                      Descripcion
+                    </dt>
+                    <dd>
+                      <p class="desc"></p>
 
+                    </dd>
+                    <dt>
+                      Restaurante
+                    </dt>
+                    <dd>
+                      la cocina de mamá
+                    </dd>
+                    <dt>
+                      Precio
+                    </dt>
+                    <dd>
+                      <p class="precio"></p>
+
+                    </dd>
+
+                </dl>
+                <div class="row ">
+                  <div class="col-sm-3 text-center btn-holder pedido">
+                    <!-- -->
+                  </div>
+                  <div class="col-sm-9 mb-2 ">
+                    <input id="pedido" value="1" type="text" name="pedido" class="col-md-8 form-control text-center input-lg
+										">
+                  </div>
                 </div>
-                <img src="..." class="imProd col-sm-8" alt="...">
-                
+              </div>
+              <div class="col-md-7 mx-auto " style="height: 90%;">
+                <img alt="" src="" class="imProd img-fluid img-thumbnail">
               </div>
             </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, animi!</p>
 
           </div>
 
-          <div class="modal-footer text-end">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-footer ">
+            <div class="container">
+              <div class="col text-start">
+
+              </div>
+              <div class="col text-end">
+
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -78,7 +126,7 @@
     <section>
       <div id="cards_landscape_wrap-2">
         <div class="container">
-          <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+          <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-2 justify-content-center">
 
 
             <!--custom card produc 1 -->
@@ -86,8 +134,8 @@
             {% for empresa in empresas %}
             {% for detalle in empresa.productos %}
             <div class="col">
-              <div class="card bg-dark hover-div" width="50%">
-                <img src="{{detalle.imagen}}" class="card-img-top" alt="hollywood sign" width="90%" />
+              <div class="card bg-dark hover-div">
+                <img src="{{detalle.imagen}}" class="rounded mx-auto d-block" alt="hollywood sign" width="100%" />
                 <div class="card-body">
                   <h5 class="card-title">{{detalle.nombre}}</h5>
                   <!--     <p class="card-text">
@@ -106,20 +154,36 @@
                       <small>{{empresa.direccionEmpresa}}</small>
                     </li>
 
-                    <li class="d-flex align-items-center ">
+                    <!-- <li class="d-flex align-items-center ">
                       <small>{{detalle.precio}}</small>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
                 <div class="card-footer">
-                  <button class=" btn  stretched-link border-0 rounded-circle bg-danger"
-                    onclick="hola({{detalle.producto_id}})" data-bs-toggle="modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
-                      class="bi bi-plus-circle-fill " viewBox="0 0 16 16">
-                      <path
-                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                    </svg>
-                  </button>
+
+                  <div class="row gx-3">
+                    <div class="col">
+
+                      <p>{{detalle.precio}}</p>
+
+                    </div>
+                    <div class="col">
+
+                      <button class=" btn  stretched-link border-0 rounded-circle bg-danger"
+                        onclick="mostrarModal({{detalle.producto_id}})" data-bs-toggle="modal"
+                        data-bs-target="#detalleProducto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                          class="bi bi-plus-circle-fill " viewBox="0 0 16 16">
+                          <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                        </svg>
+                      </button>
+
+                    </div>
+
+                  </div>
+
+
                 </div>
               </div>
             </div>
@@ -138,45 +202,74 @@
 
 </div>
 
+{%include 'helpers/scripts.html'%}
 
 <script>
-  async function hola(id) {
+  const inputPedido = document.querySelector('#pedido')
+  $(inputPedido).TouchSpin({
+    min: 1,
+    max: 100,
+    stepinterval: 1,
+    maxboostedstep: 2,
+    buttondown_class: 'btn btn-lg  btnAction btDown',
+    buttonup_class: 'btn btn-lg btnAction btUp',
+  });
+  async function mostrarModal(id) {
     console.log('click')
     const modalInfo = document.querySelector('#detalleProducto');
     const modalContent = modalInfo.querySelector('.modal-dialog .modal-content');
 
     const tituloModal = modalContent.querySelector('.modal-title');
     const img = modalContent.querySelector('.modal-body .imProd ');
-    const desc= modalContent.querySelector('.modal-body .desc ')
+    const desc = modalContent.querySelector('.modal-body .desc ')
     const cate = modalContent.querySelector('.modal-body .cate ')
     const precio = modalContent.querySelector('.modal-body .precio ')
-    
-    fetch(`/detalle-producto?id=${id}`)
+    const colCarrito = modalContent.querySelector('.modal-body .pedido ')
+
+    $(modalInfo).modal("hide");
+
+    const result = await fetch(`/detalle-producto?id=${id}`)
       .then(res => res.json())
-      .then((response) => {
-        if (response['respuesta']) {
-          data = response['response'];
-          console.log(data);
-
-          $(tituloModal).text(data['nombre'])
-          $(img).attr('src', data['imagen'])
-          $(desc).text(data['descripcion'])
-          $(cate).text(data['categoria'])
-          $(precio).text(formatterPeso.format(data['precio']))
-
-        }
-        console.log(response);
-      })
+      .then((response) => response)
       .catch(err => console.error(err))
+    console.log(result)
+    if (result['respuesta']) {
+      const data = result['response'];
+      $(tituloModal).text(data['nombre']);
+      $(img).attr('src', data['imagen']);
+      $(desc).text(data['descripcion']);
+      $(cate).text(data['categoria']);
+      $(precio).text(data['precio']);
+      
+      colCarrito.innerHTML = `        
+                <button class="btn store" name="addProducto" id="addProducto" onclick="addCarrito(${data['producto_id']})"">
 
-    $(modalInfo).modal("show");
-
-
+                </button>
+      `;
+    }
   }
-  const formatterPeso = new Intl.NumberFormat('es-CO', {
-    style: 'currency',
-    currency: 'COP',
-    minimumFractionDigits: 0
-  })
+
+  // carrito 
+  async function addCarrito(producto_id) {
+
+    const inputPedido = document.querySelector('#pedido').value
+    console.log({ producto_id, inputPedido })
+    const opciones = {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        'producto_id': producto_id,
+        'pedido': inputPedido
+      })
+    }
+    const result = await fetch(`/detalle-producto`,opciones)
+                          .then(res => res.json())
+                          .then((response) => response)
+                          .catch(err => console.error(err))
+    console.log(result)
+  }
+
 </script>
 {%endblock%}

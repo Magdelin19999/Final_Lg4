@@ -11,4 +11,7 @@ DB = mysql.connector.connect(
     
 )
 
+'''  '''
+            
+            
 DB.autcommit = True
