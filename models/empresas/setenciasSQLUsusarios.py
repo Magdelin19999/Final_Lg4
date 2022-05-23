@@ -55,7 +55,7 @@ def activarID(id):
     
 def eliminarID(id):
     cursor = DB.cursor()
-    cursor.execute(f"""DELETE FROM `cartavirtual`.`usuarios` WHERE `id` = {id};""")
+    cursor.execute(f"""DELETE FROM `usuarios` WHERE `id` = {id};""")
     cursor.close()
     
 def obtenerEmpresa(correo, contrasenia):

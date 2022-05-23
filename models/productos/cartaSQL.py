@@ -19,7 +19,7 @@ SELECT
   empresa.`direccionEmpresa`,
   `empresa`.`logoEmpresa`
 FROM
-  `cartavirtual`.`productos` AS prod
+  `productos` AS prod
 INNER JOIN `categoria`
 ON `categoria`.`id`=prod.`id_categoria`
 INNER JOIN `usuarios` AS empresa

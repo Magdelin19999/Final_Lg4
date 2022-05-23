@@ -12,7 +12,7 @@ def registroProducto(
     # validar si existe sesion
     if 'loggedin' in session:
         id_usuario = session["id"]
-        SQL = """INSERT INTO `cartavirtual`.`productos` (
+        SQL = """INSERT INTO `productos` (
                         `id_usuario`, `id_categoria`, `nombre`, `descripcion`, 
                         `precio`,      `estado`,        `imagen`, `fecha` 
                         ) VALUES (  %s, %s, %s, %s, 
